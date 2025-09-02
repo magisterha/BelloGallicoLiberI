@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>César, De Bello Gallico - Liber I (Índice)</title>
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        /* Estilos adicionales para el índice de capítulos */
+        body { background-color: #f3f0e9; }
+        .index-container { text-align: center; background-color: white; padding: 2rem 3rem; margin: 2rem auto; border-radius: 0.5rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); max-width: 90%; width: 1200px;}
+        .index-container h1 { font-family: 'Georgia', 'Times New Roman', serif; font-size: 2.5rem; margin-bottom: 0.5rem; color: #333; }
+        .index-container h2 { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 1.25rem; margin-bottom: 1.5rem; color: #555; font-weight: 400;}
+
+        /* Rejilla para la lista de capítulos */
+        .chapter-grid {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas responsivas */
+            gap: 1rem;
+            text-align: left;
+        }
+        .chapter-grid li a {
+            text-decoration: none;
+            color: #4a4a4a;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d6d3d1;
+            border-radius: 0.25rem;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .chapter-grid li a:hover {
+            background-color: #4a4a4a;
+            color: white;
+            border-color: #4a4a4a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .chapter-grid .chapter-title {
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-top: 0.25rem;
+        }
+
+        #language-switcher { max-width: 300px; margin: 0 auto 1.5rem auto; }
+    </style>
+</head>
+<body>
+    <div class="index-container">
+        <div id="language-switcher" class="mb-4">
+            <button data-lang="es" class="lang-btn active-lang">Español</button>
+            <button data-lang="en" class="lang-btn">English</button>
+            <button data-lang="zh" class="lang-btn">中文 (繁體)</button>
+        </div>
+
+        <h1 id="main-title">De Bello Gallico</h1>
+        <h2 id="subtitle">Liber Primus</h2>
+
+        <ul class="chapter-grid">
+            </ul>
+    </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const chapterList = document.querySelector('.chapter-grid');
+    const mainTitle = document.getElementById('main-title');
+    const subtitle = document.getElementById('subtitle');
+    const langSwitcher = document.getElementById('language-switcher');
+    
+    // Objeto con todas las traducciones para el índice
+    const translations = {
+        es: {
+            mainTitle: "De Bello Gallico",
+            subtitle: "Libro Primero",
+            chapters: [
+                "Capítulo 1: Descripción de la Galia", "Capítulo 2: Conspiración de Orgetórix", "Capítulo 3: El plan de los helvecios", "Capítulo 4: Muerte de Orgetórix",
+                "Capítulo 5: Preparativos para la migración", "Capítulo 6: Las rutas de los helvecios", "Capítulo 7: César marcha a Ginebra", "Capítulo 8: Respuesta de César a los helvecios",
+                "Capítulo 9: Dumnórige ayuda a los helvecios", "Capítulo 10: César fortifica la provincia", "Capítulo 11: Los heduos piden ayuda", "Capítulo 12: César ataca a los tigurinos",
+                "Capítulo 13: Embajada de Divicón", "Capítulo 14: Respuesta de César a Divicón", "Capítulo 15: Escaramuza de caballería", "Capítulo 16: Los heduos no entregan el grano",
+                "Capítulo 17: Discurso de Lisco", "Capítulo 18: La traición de Dumnórige", "Capítulo 19: César perdona a Dumnórige", "Capítulo 20: El plan de César y la advertencia",
+                "Capítulo 21: César envía a Labieno", "Capítulo 22: El error de Considio", "Capítulo 23: César se dirige a Bibracte", "Capítulo 24: Los helvecios persiguen a César",
+                "Capítulo 25: La batalla de Bibracte (I)", "Capítulo 26: La batalla de Bibracte (II)", "Capítulo 27: Rendición de los helvecios", "Capítulo 28: El destino de los helvecios",
+                "Capítulo 29: El censo de los helvecios", "Capítulo 30: Embajada de toda la Galia", "Capítulo 31: Discurso de Diviciaco sobre Ariovisto", "Capítulo 32: Súplica de los galos",
+                "Capítulo 33: Razones de César para intervenir", "Capítulo 34: Primera embajada a Ariovisto", "Capítulo 35: Respuesta arrogante de Ariovisto", "Capítulo 36: Segunda respuesta de Ariovisto",
+                "Capítulo 37: César marcha contra Ariovisto", "Capítulo 38: César ocupa Vesonción", "Capítulo 39: Pánico en el ejército romano", "Capítulo 40: Discurso de César a sus soldados",
+                "Capítulo 41: La reacción del ejército", "Capítulo 42: Ariovisto solicita una entrevista", "Capítulo 43: La entrevista entre César y Ariovisto", "Capítulo 44: Discurso de Ariovisto",
+                "Capítulo 45: Respuesta de César", "Capítulo 46: La entrevista es interrumpida", "Capítulo 47: Ariovisto pide otra entrevista", "Capítulo 48: Ariovisto avanza y acampa",
+                "Capítulo 49: Tácticas de Ariovisto", "Capítulo 50: La superstición de los germanos", "Capítulo 51: César fuerza la batalla", "Capítulo 52: La batalla contra los germanos",
+                "Capítulo 53: Derrota y huida de Ariovisto", "Capítulo 54: Conclusión de la campaña"
+            ]
+        },
+        en: {
+            mainTitle: "The Gallic War",
+            subtitle: "Book One",
+            chapters: [
+                "Chapter 1: Description of Gaul", "Chapter 2: Conspiracy of Orgetorix", "Chapter 3: The Helvetii's Plan", "Chapter 4: Death of Orgetorix",
+                "Chapter 5: Preparations for Migration", "Chapter 6: The Helvetii's Routes", "Chapter 7: Caesar Marches to Geneva", "Chapter 8: Caesar's Reply to the Helvetii",
+                "Chapter 9: Dumnorix Aids the Helvetii", "Chapter 10: Caesar Fortifies the Province", "Chapter 11: The Aedui Ask for Help", "Chapter 12: Caesar Attacks the Tigurini",
+                "Chapter 13: Divico's Embassy", "Chapter 14: Caesar's Reply to Divico", "Chapter 15: Cavalry Skirmish", "Chapter 16: The Aedui Fail to Deliver Grain",
+                "Chapter 17: Liscus's Speech", "Chapter 18: The Treachery of Dumnorix", "Chapter 19: Caesar Pardons Dumnorix", "Chapter 20: Caesar's Plan and Warning",
+                "Chapter 21: Caesar Sends Labienus", "Chapter 22: Considius's Mistake", "Chapter 23: Caesar Marches to Bibracte", "Chapter 24: The Helvetii Pursue Caesar",
+                "Chapter 25: The Battle of Bibracte (I)", "Chapter 26: The Battle of Bibracte (II)", "Chapter 27: Surrender of the Helvetii", "Chapter 28: The Fate of the Helvetii",
+                "Chapter 29: The Census of the Helvetii", "Chapter 30: Embassy from All Gaul", "Chapter 31: Diviciacus's Speech on Ariovistus", "Chapter 32: The Gauls' Plea",
+                "Chapter 33: Caesar's Reasons to Intervene", "Chapter 34: First Embassy to Ariovistus", "Chapter 35: Ariovistus's Arrogant Reply", "Chapter 36: Ariovistus's Second Reply",
+                "Chapter 37: Caesar Marches against Ariovistus", "Chapter 38: Caesar Seizes Vesontio", "Chapter 39: Panic in the Roman Army", "Chapter 40: Caesar's Speech to His Soldiers",
+                "Chapter 41: The Army's Reaction", "Chapter 42: Ariovistus Requests a Conference", "Chapter 43: The Conference Between Caesar and Ariovistus", "Chapter 44: Ariovistus's Speech",
+                "Chapter 45: Caesar's Reply", "Chapter 46: The Conference is Interrupted", "Chapter 47: Ariovistus Asks for Another Conference", "Chapter 48: Ariovistus Advances and Camps",
+                "Chapter 49: Ariovistus's Tactics", "Chapter 50: The German Superstition", "Chapter 51: Caesar Forces Battle", "Chapter 52: The Battle against the Germans",
+                "Chapter 53: Defeat and Flight of Ariovistus", "Chapter 54: Conclusion of the Campaign"
+            ]
+        },
+        zh: {
+            mainTitle: "高盧戰記",
+            subtitle: "卷一",
+            chapters: [
+                "第 1 章：高盧的描述", "第 2 章：奧爾格托里克斯的陰謀", "第 3 章：赫爾維蒂人的計劃", "第 4 章：奧爾格托里克斯之死",
+                "第 5 章：遷徙的準備", "第 6 章：赫爾維蒂人的路線", "第 7 章：凱撒進軍日內瓦", "第 8 章：凱撒對赫爾維蒂人的答复",
+                "第 9 章：杜姆諾里克斯的援助", "第 10 章：凱撒鞏固行省", "第 11 章：埃杜伊人求援", "第 12 章：凱撒攻擊提古里尼人",
+                "第 13 章：迪維科使團", "第 14 章：凱撒對迪維科的答复", "第 15 章：騎兵小戰", "第 16 章：埃杜伊人未能交付穀物",
+                "第 17 章：利斯庫斯的演說", "第 18 章：杜姆諾里克斯的背叛", "第 19 章：凱撒赦免杜姆諾里克斯", "第 20 章：凱撒的計劃與警告",
+                "第 21 章：凱撒派遣拉比埃努斯", "第 22 章：康西迪烏斯的錯誤", "第 23 章：凱撒進軍比布拉克特", "第 24 章：赫爾維蒂人追擊凱撒",
+                "第 25 章：比布拉克特之戰（一）", "第 26 章：比布拉克特之戰（二）", "第 27 章：赫爾維蒂人投降", "第 28 章：赫爾維蒂人的命運",
+                "第 29 章：赫爾維蒂人的人口普查", "第 30 章：全高盧使團", "第 31 章：迪維基亞庫斯關於阿里奧維斯圖的演說", "第 32 章：高盧人的懇求",
+                "第 33 章：凱撒干預的理由", "第 34 章：首次出使阿里奧維斯圖", "第 35 章：阿里奧維斯圖的傲慢答复", "第 36 章：阿里奧維斯圖的第二次答复",
+                "第 37 章：凱撒進軍對抗阿里奧維斯圖", "第 38 章：凱撒佔領維松蒂奧", "第 39 章：羅馬軍中的恐慌", "第 40 章：凱撒對士兵的演說",
+                "第 41 章：軍隊的反應", "第 42 章：阿里奧維斯圖請求會談", "第 43 章：凱撒與阿里奧維斯圖的會談", "第 44 章：阿里奧維斯圖的演說",
+                "第 45 章：凱撒的答复", "第 46 章：會談中斷", "第 47 章：阿里奧維斯圖要求再次會談", "第 48 章：阿里奧維斯圖推進並紮營",
+                "第 49 章：阿里奧維斯圖的戰術", "第 50 章：日耳曼人的迷信", "第 51 章：凱撒強行開戰", "第 52 章：對日耳曼人的戰役",
+                "第 53 章：阿里奧維斯圖的敗逃", "第 54 章：戰役總結"
+            ]
+        }
+    };
+
+    function generateChapterLinks(lang) {
+        chapterList.innerHTML = ''; // Limpiar la lista actual
+        const chapterTitles = translations[lang].chapters;
+        
+        chapterTitles.forEach((fullTitle, index) => {
+            const chapterNum = index + 1;
+            const [title, description] = fullTitle.split(': ');
+
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = `capitulo${chapterNum}.html`;
+            link.innerHTML = `${title}<span class="chapter-title">${description || ''}</span>`;
+            
+            listItem.appendChild(link);
+            chapterList.appendChild(listItem);
+        });
+    }
+
+    function changeLanguage(lang) {
+        // Actualizar títulos
+        mainTitle.textContent = translations[lang].mainTitle;
+        subtitle.textContent = translations[lang].subtitle;
+
+        // Regenerar la lista de capítulos en el nuevo idioma
+        generateChapterLinks(lang);
+
+        // Actualizar el botón activo
+        langSwitcher.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active-lang');
+            if (btn.dataset.lang === lang) {
+                btn.classList.add('active-lang');
+            }
+        });
+    }
+
+    // Manejador de eventos para los botones
+    langSwitcher.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            const lang = e.target.dataset.lang;
+            changeLanguage(lang);
+        }
+    });
+
+    // Carga inicial en español
+    changeLanguage('es');
+});
+</script>
+
+</body>
+</html>
