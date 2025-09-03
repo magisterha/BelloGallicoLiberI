@@ -178,4 +178,32 @@ const corpus = {
                             { textus: "interdiu", lemma: "interdiu", morphologia: "Adverbio", syntaxis: "Modificador circunstancial", translatio: { es: "de día", en: "by day", zh: "白日" } },
                             { textus: "saepius", lemma: "saepe", morphologia: "Adverbio comparativo", syntaxis: "Modificador circunstancial", translatio: { es: "más a menudo", en: "more often", zh: "更頻繁地" } },
                             { textus: "noctu", lemma: "noctu", morphologia: "Adverbio", syntaxis: "Modificador circunstancial", translatio: { es: "de noche", en: "by night", zh: "在夜間" } },
-                            { textus: "si", lemma: "si", morphologia: "Conjunción subordinante", syntaxis: "Nexo (introduce interrogativa
+                            { textus: "si", lemma: "si", morphologia: "Conjunción subordinante", syntaxis: "Nexo (introduce interrogativa indirecta)", translatio: { es: "si", en: "if", zh: "" } },
+                            { textus: "perrumpere", lemma: "perrumpo", morphologia: "Verbo, infinitivo presente, activo", syntaxis: "Infinitivo (complemento de 'possent')", translatio: { es: "pasar", en: "break through", zh: "強行渡河" } },
+                            { textus: "possent", lemma: "possum", morphologia: "Verbo, 3ª p. pl., pretérito imperfecto, subjuntivo, activo", syntaxis: "Verbo de la subordinada", translatio: { es: "podían", en: "they could", zh: "" } },
+                            { textus: "conati", lemma: "conor", morphologia: "Verbo, participio perfecto deponente, masculino, nominativo plural", syntaxis: "Participio concertado con 'Heluetii' (o 'alii')", translatio: { es: "habiendo intentado", en: "having attempted", zh: "試圖" } },
+                            { textus: "operis", lemma: "opus", morphologia: "Sustantivo, neutro, genitivo singular", syntaxis: "Complemento del Nombre de 'munitione'", translatio: { es: "de la obra", en: "of the work", zh: "工程的" } },
+                            { textus: "munitione", lemma: "munitio", morphologia: "Sustantivo, femenino, ablativo singular", syntaxis: "C.C. de Causa/Instrumento", translatio: { es: "por la fortificación", en: "by the fortification", zh: "防禦工事" } },
+                            { textus: "et", lemma: "et", morphologia: "Conjunción copulativa", syntaxis: "Nexo", translatio: { es: "y", en: "and", zh: "" } },
+                            { textus: "militum", lemma: "miles", morphologia: "Sustantivo, masculino, genitivo plural", syntaxis: "Complemento del Nombre de 'concursu'", translatio: { es: "de los soldados", en: "of the soldiers", zh: "士兵的" } },
+                            { textus: "concursu", lemma: "concursus", morphologia: "Sustantivo, masculino, ablativo singular", syntaxis: "C.C. de Causa/Instrumento", translatio: { es: "por el ataque", en: "by the charge", zh: "衝鋒" } },
+                            { textus: "et", lemma: "et", morphologia: "Conjunción copulativa", syntaxis: "Nexo", translatio: { es: "y", en: "and", zh: "以及" } },
+                            { textus: "telis", lemma: "telum", morphologia: "Sustantivo, neutro, ablativo plural", syntaxis: "C.C. de Causa/Instrumento", translatio: { es: "por las flechas", en: "weapons", zh: "投擲的武器" } },
+                            { textus: "repulsi", lemma: "repello", morphologia: "Verbo, participio perfecto pasivo, masculino, nominativo plural", syntaxis: "Participio concertado con 'Heluetii'", translatio: { es: "repelidos", en: "repulsed", zh: "所擊退" } },
+                            { textus: "hoc", lemma: "hic", morphologia: "Pronombre/Adjetivo, masculino, ablativo singular", syntaxis: "Atributo de 'conatu'", translatio: { es: "de este", en: "from this", zh: "這一" } },
+                            { textus: "conatu", lemma: "conatus", morphologia: "Sustantivo, masculino, ablativo singular", syntaxis: "C.C. de Separación", translatio: { es: "intento", en: "attempt", zh: "嘗試" } },
+                            { textus: "destiterunt", lemma: "desisto", morphologia: "Verbo, 3ª p. pl., perfecto, indicativo, activo", syntaxis: "Verbo principal", translatio: { es: "desistieron", en: "desisted", zh: "最終放棄了" } }
+                        ],
+                        ordo_syntacticus: "Heluetii, deiecti ea spe, conati (si possent perrumpere) [transire] nauibus iunctis ratibusque compluribus factis, [et] alii [conati transire] uadis Rhodani (qua erat minima altitudo fluminis), non numquam interdiu, saepius noctu, repulsi munitione operis et concursu militum et telis, destiterunt hoc conatu.",
+                        notae: "Oración con múltiples participios concertados con el sujeto 'Heluetii': 'deiecti', 'conati', 'repulsi'. La frase 'si possent perrumpere' es una interrogativa indirecta dependiente de 'conati'.",
+                        translationes: {
+                            es: "Los helvecios, abatidos en esta esperanza, habiendo unido barcas y construido numerosas balsas, y otros por los vados del Ródano, por donde era la mínima profundidad del río, habiendo intentado unas veces de día y más a menudo de noche ver si podían pasar, repelidos por la fortificación de la obra, por el ataque de los soldados y por las flechas, desistieron de este intento.",
+                            en: "The Helvetii, cast down from this hope, having joined boats and made very many rafts, while others tried the fords of the Rhone where the depth of the river was the least, attempting sometimes by day, more often by night, to see if they could break through, were repulsed by the fortification of the work and by the charge and weapons of the soldiers, and desisted from this attempt.",
+                            zh: "赫爾維蒂人在此希望破滅後，遂將船隻相連並建造了許多木筏，另一些人則在河水最淺的羅納河渡口，時而白日，更頻繁地在夜間，試圖強行渡河，但均被防禦工事、士兵的衝鋒以及投擲的武器所擊退，最終放棄了這一嘗試。"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+};
