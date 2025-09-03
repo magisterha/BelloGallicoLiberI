@@ -106,7 +106,6 @@ const corpus = {
                     {
                         id_orationis: 'o4',
                         original_lat: "Horum omnium fortissimi sunt Belgae, propterea quod a cultu atque humanitate prouinciae longissime absunt, minimeque ad eos mercatores saepe commeant atque ea quae ad effeminandos animos pertinent inportant, proximique sunt Germanis, qui trans Rhenum incolunt, quibuscum continenter bellum gerunt.",
-                        notae: "Esta es una oración compleja con múltiples cláusulas subordinadas. La analizaré en segmentos lógicos dentro del array 'verba'.",
                         verba: [
                             { textus: "Horum", lemma: "hic", morphologia: "Pronombre demost, M, Gen, Pl", syntaxis: "Complemento Partitivo de 'fortissimi'", translatio: { es: "De estos", en: "Of these", zh: "在這些人中" } },
                             { textus: "omnium", lemma: "omnis", morphologia: "Adj. 3ª dec, M, Gen, Pl", syntaxis: "Complemento Partitivo de 'fortissimi'", translatio: { es: "de todos", en: "of all", zh: "所有的" } },
