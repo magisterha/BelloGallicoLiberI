@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     // 1. VERIFICACIÓN INICIAL
-    // Comprueba si el objeto 'corpus' existe. Si no, muestra un error y no hace nada.
     if (typeof corpus === 'undefined') {
-        console.error("Error: El objeto 'corpus' no está definido. Asegúrate de que el archivo 'datos_capituloX.js' se está cargando correctamente antes que 'logica.js'.");
+        console.error("Error: El objeto 'corpus' no está definido. Asegúrate de que tu archivo de datos (ej: datos_capitulo1.js) se está cargando correctamente y antes que 'logica.js'.");
         return;
     }
 
     // 2. REFERENCIAS A ELEMENTOS DEL DOM
-    // Guardamos las referencias a los elementos HTML para no tener que buscarlos repetidamente.
     const mainTitleElem = document.getElementById('main-title');
     const subtitleElem = document.getElementById('subtitle');
     const authorElem = document.getElementById('author');
@@ -19,57 +17,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const footerElem = document.getElementById('footer-text');
     const langSwitcher = document.getElementById('language-switcher');
     
-    // Variable para mantener el idioma actual
     let currentLang = 'es';
 
     // =========================================================================================
-    // === FUNCIONES DE RENDERIZADO (Dibujan el contenido en la página) ===
+    // === FUNCIONES DE RENDERIZADO ===
     // =========================================================================================
 
-    /**
-     * Función principal que actualiza todo el contenido visible de la página.
-     * Se llama al cargar la página y cada vez que se cambia de idioma.
-     */
     function renderContent() {
-        // Renderizar la cabecera (Título, subtítulo, autor)
         mainTitleElem.textContent = corpus.titulus_principalis;
         subtitleElem.textContent = corpus.titulus_secundarius[currentLang];
         authorElem.textContent = corpus.auctor;
         
-        // Renderizar la sección de introducción contextual
         contextTitleElem.textContent = corpus.introductio[currentLang].titulus;
         contextContentElem.innerHTML = corpus.introductio[currentLang].contentus;
         
-        // Renderizar el título de la sección de texto principal
         textTitleElem.textContent = currentLang === 'es' ? 'Texto y Análisis' : (currentLang === 'en' ? 'Text and Analysis' : '文本與分析');
         
-        // Construir y mostrar el texto en latín
         buildLatinText();
         
-        // Renderizar el pie de página
         footerElem.textContent = `© ${new Date().getFullYear()} - Análisis Interactivo.`;
     }
 
-    /**
-     * Construye los párrafos de los capítulos y las palabras interactivas.
-     * Esta función lee la nueva estructura de 'capitula'.
-     */
     function buildLatinText() {
-        paragrafusContentusElem.innerHTML = ''; // Limpiar contenido previo
+        paragrafusContentusElem.innerHTML = ''; 
 
         corpus.textus.capitula.forEach((capitulum, capitulumIndex) => {
             const p = document.createElement('p');
-            p.className = "mb-6"; // Aumentamos el margen para separar mejor los capítulos
+            p.className = "mb-6";
 
             capitulum.orationes.forEach((oratio, oratioIndex) => {
-                const words = oratio.original_lat.split(/(\s+)/); // Dividir por espacios, manteniéndolos
+                const words = oratio.original_lat.split(/(\s+)/);
 
                 words.forEach(word => {
-                    if (!word.trim()) { // Si es solo un espacio en blanco
+                    if (!word.trim()) {
                         p.appendChild(document.createTextNode(word));
                         return;
                     }
-
+                    
                     const cleanWord = word.replace(/[,.;:]/g, '');
                     const verbumData = oratio.verba.find(v => v.textus.replace(/[,.;:]/g, '') === cleanWord);
 
@@ -77,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         const span = document.createElement('span');
                         span.textContent = word;
                         span.className = 'verbum';
-                        // Guardamos la información necesaria directamente en el elemento
                         span.dataset.capitulumIndex = capitulumIndex;
                         span.dataset.oratioIndex = oratioIndex;
                         span.dataset.verbumTextus = verbumData.textus;
@@ -93,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Muestra el análisis de una palabra en la barra lateral.
+     * NUEVA VERSIÓN: Ahora incluye la traducción de la palabra.
      * @param {HTMLElement} clickedSpan - El elemento <span> de la palabra que fue clickeada.
      */
     function showAnalysis(clickedSpan) {
@@ -102,10 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!verbumData) return;
 
+        // **NUEVA LÍNEA**: Obtenemos la traducción de la palabra en el idioma actual
+        const palabraTraducida = verbumData.translatio ? verbumData.translatio[currentLang] : 'N/A';
+
         marginaliaContentusElem.innerHTML = `
             <div class="space-y-4">
                 <div>
                     <p class="text-2xl textum-classicum text-gray-800 font-bold">${verbumData.textus}</p>
+                    
+                    <p class="text-lg text-blue-600 font-semibold mb-2">${palabraTraducida}</p> 
+
                     <p class="text-sm text-gray-600"><b>Lema:</b> <i>${verbumData.lemma}</i></p>
                     <p class="text-sm text-gray-600"><b>Morfología:</b> ${verbumData.morphologia}</p>
                     <p class="text-sm text-gray-600"><b>Sintaxis:</b> ${verbumData.syntaxis}</p>
@@ -130,39 +120,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================================================
-    // === MANEJADORES DE EVENTOS (Responden a las acciones del usuario) ===
+    // === MANEJADORES DE EVENTOS ===
     // =========================================================================================
     
-    // Evento para hacer clic en una palabra en latín
     paragrafusContentusElem.addEventListener('click', (e) => {
         if (e.target.classList.contains('verbum')) {
-            // Resaltar la palabra seleccionada
             document.querySelectorAll('.verbum').forEach(el => el.classList.remove('activus'));
             e.target.classList.add('activus');
-            // Mostrar su análisis
             showAnalysis(e.target);
         }
     });
 
-    // Evento para los botones de cambio de idioma
     langSwitcher.addEventListener('click', (e) => {
         if (e.target.tagName === 'BUTTON') {
             const newLang = e.target.dataset.lang;
             if (newLang !== currentLang) {
                 currentLang = newLang;
-                // Actualizar el estilo del botón activo
                 langSwitcher.querySelectorAll('.lang-btn').forEach(btn => {
                     btn.classList.toggle('active-lang', btn.dataset.lang === newLang);
                 });
-                // Re-renderizar toda la página en el nuevo idioma
                 renderContent();
-                marginaliaContentusElem.innerHTML = ''; // Limpiar la barra lateral
+                marginaliaContentusElem.innerHTML = '';
             }
         }
     });
 
     // =========================================================================================
-    // === INICIALIZACIÓN (Lo que se ejecuta al cargar la página) ===
+    // === INICIALIZACIÓN ===
     // =========================================================================================
     renderContent();
 });
