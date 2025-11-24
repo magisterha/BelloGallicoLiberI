@@ -1,5 +1,5 @@
 const corpus = {
-    titulus_principalis: "De Bello Gallico, I, 1-4",
+    titulus_principalis: "De Bello Gallico, I, 1",
     auctor: "C. Iulius Caesar",
     titulus_secundarius: {
         es: "La Conspiración de Orgetórix",
@@ -8,15 +8,15 @@ const corpus = {
     },
     introductio: {
         es: {
-            titulus: "Introducción Contextual (Cap. 1-4)",
+            titulus: "Introducción Contextual (Cap. 1)",
             contentus: `<p>Los primeros capítulos de "De Bello Gallico" sientan las bases de toda la obra. César comienza con una descripción geográfica y etnográfica de la Galia, dividiéndola en sus tres partes principales. Inmediatamente después, introduce al personaje catalizador del conflicto: Orgetórix, un noble helvecio cuya ambición por el poder le lleva a organizar una migración masiva de su pueblo.</p><p>Esta sección es crucial, pues no solo presenta a los helvecios como una amenaza que justifica la intervención romana, sino que también revela las tensioniones internas y las rivalidades entre las tribus galas, un factor que César explotará magistralmente a lo largo de sus campañas.</p>`
         },
         en: {
-            titulus: "Contextual Introduction (Ch. 1-4)",
+            titulus: "Contextual Introduction (Ch. 1)",
             contentus: `<p>The opening chapters of "De Bello Gallico" lay the groundwork for the entire work. Caesar begins with a geographical and ethnographic description of Gaul, dividing it into its three main parts. Immediately after, he introduces the character who catalyzes the conflict: Orgetorix, a Helvetian noble whose ambition for power leads him to organize a mass migration of his people.</p><p>This section is crucial, as it not only presents the Helvetii as a threat justifying Roman intervention but also reveals the internal tensions and rivalries among the Gallic tribes, a factor that Caesar will masterfully exploit throughout his campaigns.</p>`
         },
         zh: {
-            titulus: "背景介紹 (1-4章)",
+            titulus: "背景介紹 (1章)",
             contentus: `<p>《高盧戰記》的開篇章節為整部著作奠定了基礎。凱撒首先對高盧進行了地理和民族描述，將其劃分為三個主要部分。緊接著，他介紹了引發衝突的關鍵人物：奧爾格托里克斯，一位赫爾維蒂貴族，其對權力的野心促使他組織了整個部落的大規模遷徙。</p><p>這一部分至關重要，因為它不僅將赫爾維蒂人描繪成一個證明羅馬干預正當性的威脅，還揭示了高盧各部落之間的內部緊張和敵對關係——這正是凱撒在其整個戰役中巧妙利用的一個因素。</p>`
         }
     },
